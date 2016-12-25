@@ -9,6 +9,7 @@ bool MainApp::OnInit()
 	SetTopWindow(dialog);
 	dialog->Show(true);
 	return true;
+
 }
 
 int MainApp::OnExit()
