@@ -1,4 +1,4 @@
 # PGK-Project
 
-# pliki 
+# files 
 *.fwd projekt for wxFormBuilder to create the GUI
