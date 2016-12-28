@@ -8,6 +8,9 @@
 #include "MainFrame.h"
 
 #include <wx/filedlg.h>
+
+
+#include "TransformationSetup.h"
 ///////////////////////////////////////////////////////////////////////////
 
 MainFrame::MainFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : wxFrame(parent, id, title, pos, size, style)
@@ -56,5 +59,7 @@ void MainFrame::readFileButtonOnLeftUp(wxMouseEvent& event)
 
 	if (openFileDialog.ShowModal() == wxID_CANCEL)
 		return;     // the user changed idea... 
+					//open filestream with selected path
+	TransformationSetup(openFileDialog.GetPath());
 }
 

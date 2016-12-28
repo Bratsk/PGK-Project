@@ -19,12 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Fractal.cpp" />
+    <ClCompile Include="Fractal2D.cpp" />
     <ClCompile Include="MainApp.cpp" />
     <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="TransformationSetup.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fractal.h" />
+    <ClInclude Include="Fractal2D.h" />
     <ClInclude Include="MainApp.h" />
     <ClInclude Include="MainFrame.h" />
+    <ClInclude Include="TransformationSetup.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E251C433-8005-4A29-89CA-949A41157B3D}</ProjectGuid>
