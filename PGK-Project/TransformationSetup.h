@@ -5,6 +5,9 @@
 #include <wx/gdicmn.h>
 #include <wx/wfstream.h> // input stream file
 #include <wx/txtstrm.h> // text stream file
+#include <wx/panel.h>
+
+#include "Fractal2D.h"
 
 /*
 	dimension enumeration indicates which dimension the fractal has
@@ -37,19 +40,31 @@ struct Position
 class TransformationSetup
 {
 public:
-	TransformationSetup(wxString filepath);
+	/* Constructor
+		Set up the file given with filepath and the panel where fractal has to be drawn
+		Opens the text file to read*/
+	TransformationSetup(wxString filepath, wxPanel * panel);
 	~TransformationSetup();
-
+	/*
+		Reads data from file and initalises variables needed for the transformation
+	*/
 	bool ReadData();
-
+	/* Get bitmap size of all fractals */
+	wxSize GetBitmapSize();
+	/* Get fractal data read from file */
+	Fractal** GetFractal();
+	/* Get amout ouf fractals stored in file */
+	int GetFractalSize();
 protected:
 	wxFileInputStream input_stream;
 	wxTextInputStream input_text_stream; //input text file for the animation
 	wxSize bitmap; // size of bitmap for the fractal
+	wxPanel * drawPanel;
 	int iterations; // how many points should the fractal contain
 	dimension fractalDimension; // visual dimension of fractal
 	Position viewerPos; // position of viewer (3D only)
-	int fractalNumber; // how many fractals should be drawn
-	int transformationBitmapFrames; // how manz frames should be drawn between the fractals
+	int fractalSize; // how many fractals should be drawn
+	int * transformationBitmapFrames; // how manz frames should be drawn between the fractals
+	Fractal ** fractal;
 };
 

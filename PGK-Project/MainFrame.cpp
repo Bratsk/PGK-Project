@@ -8,14 +8,15 @@
 #include "MainFrame.h"
 
 #include <wx/filedlg.h>
-
+#include <iostream>
 
 #include "TransformationSetup.h"
+#include "Fractal.h"
 ///////////////////////////////////////////////////////////////////////////
 
 MainFrame::MainFrame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style) : wxFrame(parent, id, title, pos, size, style)
 {
-	this->SetSizeHints(wxSize(300, 150), wxDefaultSize);
+	this->SetSizeHints(wxSize(-1, -1), wxDefaultSize);
 
 	wxBoxSizer* mainSizer;
 	mainSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -23,7 +24,7 @@ MainFrame::MainFrame(wxWindow* parent, wxWindowID id, const wxString& title, con
 	wxBoxSizer* panelSizer;
 	panelSizer = new wxBoxSizer(wxVERTICAL);
 
-	drawPanel = new wxPanel(this, wxID_DRAWPANEL, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+	drawPanel = new wxPanel(this, wxID_DRAWPANEL, wxDefaultPosition, wxSize(300, 400), wxTAB_TRAVERSAL);
 	panelSizer->Add(drawPanel, 1, wxEXPAND | wxALL, 5);
 
 
@@ -46,20 +47,60 @@ MainFrame::MainFrame(wxWindow* parent, wxWindowID id, const wxString& title, con
 
 	// Connect Events
 	readFileButton->Connect(wxEVT_LEFT_UP, wxMouseEventHandler(MainFrame::readFileButtonOnLeftUp), NULL, this);
+	//panelSizer->SetDimension(wxDefaultPosition, wxSize(800, 800));
+	
 }
 
 MainFrame::~MainFrame()
 {
 }
 
+void MainFrame::AdjustFrameSize(const wxSize bitmapSize)
+{
+	wxSize frameSize = this->GetSize();
+	wxSize panelSize = drawPanel->GetSize();
+	//set frame size to bitmap size
+	this->SetSize(bitmapSize);
+	//expand x direction
+	while (panelSize.x < bitmapSize.x)
+	{
+		frameSize = this->GetSize();
+		frameSize.x++;
+		this->SetSize(frameSize);
+		panelSize = this->GetSize();
+		panelSize.x++;
+		this->SetSize(panelSize);
+	}
+	//expand y direction
+	while (panelSize.y < bitmapSize.y)
+	{
+		frameSize = this->GetSize();
+		frameSize.y++;
+		this->SetSize(frameSize);
+		panelSize = this->GetSize();
+		panelSize.y++;
+		this->SetSize(panelSize);
+	}
+}
+
 void MainFrame::readFileButtonOnLeftUp(wxMouseEvent& event) 
-{ 
+{
 	wxFileDialog openFileDialog(this, _("Open text file"), "", "",
 			"text files (*.txt)|*.txt", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
 	if (openFileDialog.ShowModal() == wxID_CANCEL)
 		return;     // the user changed idea... 
 					//open filestream with selected path
-	TransformationSetup(openFileDialog.GetPath());
+	TransformationSetup fractalSetup(openFileDialog.GetPath(), drawPanel);
+	//adjust size of frame
+	this->AdjustFrameSize(fractalSetup.GetBitmapSize());
+	Fractal ** fractal = fractalSetup.GetFractal();
+	int fractalSize = fractalSetup.GetFractalSize();
+	for (int i = 0; i < fractalSize; i++)
+	{
+		wxString name = "";
+		name << i + 1 << ".bmp";
+		fractal[i]->GenerateBitmap(name, drawPanel);
+	}
 }
 

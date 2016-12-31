@@ -32,6 +32,9 @@
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="TransformationSetup.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="example.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E251C433-8005-4A29-89CA-949A41157B3D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

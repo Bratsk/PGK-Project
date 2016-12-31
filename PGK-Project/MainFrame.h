@@ -43,8 +43,9 @@ protected:
 
 public:
 
-	MainFrame(wxWindow* parent, wxWindowID id = wxID_MAINFRAME, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(861, 529), long style = wxDEFAULT_FRAME_STYLE | wxICONIZE | wxMINIMIZE | wxRESIZE_BORDER | wxSYSTEM_MENU | wxTAB_TRAVERSAL);
+	MainFrame(wxWindow* parent, wxWindowID id = wxID_MAINFRAME, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(-1, -1), long style = wxDEFAULT_FRAME_STYLE | wxICONIZE | wxMINIMIZE | wxRESIZE_BORDER | wxSYSTEM_MENU | wxTAB_TRAVERSAL);
 
 	~MainFrame();
-private:
+protected:
+	void AdjustFrameSize(const wxSize bitmapSize);
 };

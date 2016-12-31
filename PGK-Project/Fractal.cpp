@@ -6,7 +6,7 @@
 Fractal::Fractal(int iter, wxSize bitmp, int nTrans) :
 	iterations(iter),
 	bitmap(bitmp),
-	nTransf(nTrans)
+	transformationSize(nTrans)
 {
 }
 
@@ -14,7 +14,9 @@ Fractal::~Fractal()
 {
 }
 
-void Fractal::AddTransformation(wxTextInputStream & fstr, int i)
+int Fractal::GetTransformationSize()
 {
-
+	return transformationSize;
 }
+
+
