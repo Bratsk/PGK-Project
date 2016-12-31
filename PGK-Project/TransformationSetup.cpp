@@ -20,7 +20,7 @@ TransformationSetup::TransformationSetup(wxString filepath, wxPanel * panel) :
 	input_stream(filepath),
 	input_text_stream(input_stream),
 	//set all data to zero
-	bitmap(0, 0),
+	bitmapSize(0, 0),
 	drawPanel(panel),
 	iterations(0),
 	fractalDimension(d2D),
@@ -50,8 +50,8 @@ bool TransformationSetup::ReadData()
 	int dimension;
 	input_text_stream.SetStringSeparators(" ,");
 	input_text_stream
-		>> bitmap.x 
-		>> bitmap.y
+		>> bitmapSize.x 
+		>> bitmapSize.y
 		>> iterations
 		>> dimension;
 	fractalDimension = dimension == 0 ? d2D : d3D;
@@ -72,7 +72,7 @@ bool TransformationSetup::ReadData()
 
 	
 	/// TEST BEGIN	-> to delete
-	iterations = 100;
+	//iterations = 10000;
 	/// TEST END	-> to delete
 
 	// read fractal data
@@ -81,7 +81,7 @@ bool TransformationSetup::ReadData()
 
 	// read first fractal separately
 	input_text_stream >> fts;
-	fractal[0] = new Fractal2D(iterations, bitmap, fts);
+	fractal[0] = new Fractal2D(iterations, bitmapSize, fts);
 	for (int i = 0; i < fts; i++)
 		fractal[0]->AddTransformation(input_text_stream, i);
 
@@ -91,7 +91,7 @@ bool TransformationSetup::ReadData()
 		input_text_stream
 			>> transformationBitmapFrames[j - 1]
 			>> fts;
-		fractal[j] = new Fractal2D(iterations, bitmap, fts);
+		fractal[j] = new Fractal2D(iterations, bitmapSize, fts);
 		for (int i = 0; i < fts; i++)
 			fractal[j]->AddTransformation(input_text_stream, i);
 	}
@@ -101,7 +101,7 @@ bool TransformationSetup::ReadData()
 
 wxSize TransformationSetup::GetBitmapSize()
 {
-	return bitmap;
+	return bitmapSize;
 }
 
 Fractal ** TransformationSetup::GetFractal()

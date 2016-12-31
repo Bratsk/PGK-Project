@@ -8,7 +8,6 @@
 #include "MainFrame.h"
 
 #include <wx/filedlg.h>
-#include <iostream>
 
 #include "TransformationSetup.h"
 #include "Fractal.h"
@@ -96,6 +95,7 @@ void MainFrame::readFileButtonOnLeftUp(wxMouseEvent& event)
 	this->AdjustFrameSize(fractalSetup.GetBitmapSize());
 	Fractal ** fractal = fractalSetup.GetFractal();
 	int fractalSize = fractalSetup.GetFractalSize();
+
 	for (int i = 0; i < fractalSize; i++)
 	{
 		wxString name = "";

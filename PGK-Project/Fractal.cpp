@@ -5,7 +5,7 @@
 
 Fractal::Fractal(int iter, wxSize bitmp, int nTrans) :
 	iterations(iter),
-	bitmap(bitmp),
+	bitmapSize(bitmp),
 	transformationSize(nTrans)
 {
 }

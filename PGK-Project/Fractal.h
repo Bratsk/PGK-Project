@@ -17,7 +17,7 @@ public:
 	virtual void SetTransformationSize(int n) = 0;
 protected:
 	int iterations;
-	wxSize bitmap; //bitmap size on which it has to be drawn
+	wxSize bitmapSize; //bitmap size on which it has to be drawn
 	int transformationSize; //size of transformations needed in fractal
 };
 

@@ -58,7 +58,7 @@ public:
 protected:
 	wxFileInputStream input_stream;
 	wxTextInputStream input_text_stream; //input text file for the animation
-	wxSize bitmap; // size of bitmap for the fractal
+	wxSize bitmapSize; // size of bitmap for the fractal
 	wxPanel * drawPanel;
 	int iterations; // how many points should the fractal contain
 	dimension fractalDimension; // visual dimension of fractal

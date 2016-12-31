@@ -34,16 +34,20 @@ void Fractal2D::AddTransformation(wxTextInputStream & fstr, int i)
 
 void Fractal2D::GenerateBitmap(wxString filename, wxPanel * drawPanel)
 {
-	wxImage fractalImage(bitmap);
+	wxImage fractalImage(bitmapSize);
 	wxClientDC * cDC;
 	cDC = new wxClientDC(drawPanel);
 	wxBufferedDC * bDC;
 	bDC = new wxBufferedDC(cDC);
-
+	bDC->Clear();
+	//bDC->SetBackground(wxBrush(wxColor(255, 255, 255)));
+	bDC->SetPen(wxPen(wxColor(0, 0, 0)));
+	int strechFactor = bitmapSize.x < bitmapSize.y ? bitmapSize.x : bitmapSize.y;
+	wxCoord x = 0,  y  = 0;
 	double x1 = 0., y1 = 0.;
 	double x2 = 0., y2 = 0.;
 	int t; // transformation index which is currently used
-	// threshold array with threshold values between 0 and 1
+	// ALLOCATE threshold array with threshold values between 0 and 1
 	double * threshold = new double[transformationSize + 2]; 
 	threshold[0] = 0.0;
 	for (int i = 1; i < transformationSize + 1; i++)
@@ -66,15 +70,25 @@ void Fractal2D::GenerateBitmap(wxString filename, wxPanel * drawPanel)
 			if (threshold[j] <= rand && rand < threshold[j + 1])
 			{
 				t = j;
+				break;
 			}
 		}
 		x2 = transformation[t].a * x1 + transformation[t].b * y1 + transformation[t].e;
 		y2 = transformation[t].c * x1 + transformation[t].d * y1 + transformation[t].f;
 		x1 = x2;
 		y1 = y2;
-		
+		x = static_cast<wxCoord>(x1 * strechFactor);
+		y = static_cast<wxCoord>(y1 * strechFactor);
+		bDC->DrawPoint(x, y);
 	}
+	wxBitmap fractalBitmap = bDC->GetAsBitmap();
+	fractalImage = fractalBitmap.ConvertToImage();
+	//save image
+	fractalImage.SaveFile(filename, wxBITMAP_TYPE_BMP);
+	// DELETE memory
 	delete[] threshold;
+	delete bDC;
+	delete cDC;
 }
 
 void Fractal2D::SetTransformationSize(int n)
