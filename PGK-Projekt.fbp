@@ -42,7 +42,7 @@
             <property name="id">wxID_MAINFRAME</property>
             <property name="maximum_size"></property>
             <property name="minimum_size">-1,-1</property>
-            <property name="name">MainFrame</property>
+            <property name="name">f</property>
             <property name="pos"></property>
             <property name="size">360,300</property>
             <property name="style">wxDEFAULT_FRAME_STYLE|wxICONIZE|wxMINIMIZE|wxRESIZE_BORDER|wxSYSTEM_MENU</property>
@@ -283,6 +283,15 @@
                         </object>
                     </object>
                 </object>
+            </object>
+            <object class="wxTimer" expanded="1">
+                <property name="enabled">0</property>
+                <property name="id">wxID_ANY</property>
+                <property name="name">mainTimer</property>
+                <property name="oneshot">0</property>
+                <property name="period">1000</property>
+                <property name="permission">protected</property>
+                <event name="OnTimer"></event>
             </object>
         </object>
     </object>

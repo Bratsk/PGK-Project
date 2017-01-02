@@ -18,6 +18,7 @@
 #include <wx/string.h>
 #include <wx/sizer.h>
 #include <wx/button.h>
+#include <wx/timer.h>
 #include <wx/frame.h>
 
 ///////////////////////////////////////////////////////////////////////////
@@ -36,6 +37,7 @@ private:
 protected:
 	wxPanel* drawPanel;
 	wxButton* readFileButton;
+	wxTimer mainTimer;
 
 	// Virtual event handlers, overide them in your derived class
 	virtual void readFileButtonOnLeftUp(wxMouseEvent& event);
@@ -43,9 +45,11 @@ protected:
 
 public:
 
-	MainFrame(wxWindow* parent, wxWindowID id = wxID_MAINFRAME, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(-1, -1), long style = wxDEFAULT_FRAME_STYLE | wxICONIZE | wxMINIMIZE | wxRESIZE_BORDER | wxSYSTEM_MENU | wxTAB_TRAVERSAL);
+	MainFrame(wxWindow* parent, wxWindowID id = wxID_MAINFRAME, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(360, 300), long style = wxDEFAULT_FRAME_STYLE | wxICONIZE | wxMINIMIZE | wxRESIZE_BORDER | wxSYSTEM_MENU | wxTAB_TRAVERSAL);
 
 	~MainFrame();
+
 protected:
+	/* Adjust size of the drawPanle to size given in file */
 	void AdjustFrameSize(const wxSize bitmapSize);
 };

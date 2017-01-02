@@ -9,6 +9,7 @@ struct AffineTransformation2D
 	double probability;
 };
 
+
 /*
 	fractal2D defines the 2D fractal.
 	with ADDTransformation all transformations are added
@@ -18,6 +19,11 @@ class Fractal2D :
 	public Fractal
 {
 public:
+	/* Constructor
+	@iter iterations needed to draw the fractal
+	@bitmp bitmap size on which the fractal is drawn
+	@nTrans how many affine transformations does the fractal contain
+	*/
 	Fractal2D(int iter, wxSize bitmp, int nTrans);
 	~Fractal2D();
 	/* Adding new Transformation to Fractal
@@ -28,6 +34,7 @@ public:
 	/* Generate simple bitmap file visualising the fractal */
 	virtual void GenerateBitmap(wxString filename, wxPanel * drawPanel) override;
 private:
+	// array contains all affine transformations needed to create the fractal
 	AffineTransformation2D * transformation;
 
 

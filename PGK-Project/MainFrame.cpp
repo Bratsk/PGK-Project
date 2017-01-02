@@ -41,13 +41,12 @@ MainFrame::MainFrame(wxWindow* parent, wxWindowID id, const wxString& title, con
 
 	this->SetSizer(mainSizer);
 	this->Layout();
+	mainTimer.SetOwner(this, wxID_ANY);
 
 	this->Centre(wxBOTH);
 
 	// Connect Events
 	readFileButton->Connect(wxEVT_LEFT_UP, wxMouseEventHandler(MainFrame::readFileButtonOnLeftUp), NULL, this);
-	//panelSizer->SetDimension(wxDefaultPosition, wxSize(800, 800));
-	
 }
 
 MainFrame::~MainFrame()
@@ -103,4 +102,3 @@ void MainFrame::readFileButtonOnLeftUp(wxMouseEvent& event)
 		fractal[i]->GenerateBitmap(name, drawPanel);
 	}
 }
-
