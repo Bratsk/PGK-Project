@@ -8,6 +8,7 @@ Fractal::Fractal(int iter, wxSize bitmp, int nTrans) :
 	bitmapSize(bitmp),
 	transformationSize(nTrans)
 {
+
 }
 
 Fractal::~Fractal()

@@ -35,6 +35,9 @@ MainFrame::MainFrame(wxWindow* parent, wxWindowID id, const wxString& title, con
 	readFileButton = new wxButton(this, wxID_READFILE, wxT("Read File"), wxDefaultPosition, wxDefaultSize, 0);
 	controlSizer->Add(readFileButton, 0, wxALL, 5);
 
+	animateFractalButton = new wxButton(this, wxID_ANY, wxT("Animate"), wxDefaultPosition, wxDefaultSize, 0);
+	controlSizer->Add(animateFractalButton, 0, wxALL, 5);
+
 
 	mainSizer->Add(controlSizer, 0, wxALIGN_LEFT | wxALL, 5);
 
@@ -47,6 +50,7 @@ MainFrame::MainFrame(wxWindow* parent, wxWindowID id, const wxString& title, con
 
 	// Connect Events
 	readFileButton->Connect(wxEVT_LEFT_UP, wxMouseEventHandler(MainFrame::readFileButtonOnLeftUp), NULL, this);
+	animateFractalButton->Connect(wxEVT_LEFT_UP, wxMouseEventHandler(MainFrame::animateFractalButtonOnLeftUp), NULL, this);
 }
 
 MainFrame::~MainFrame()
@@ -101,4 +105,10 @@ void MainFrame::readFileButtonOnLeftUp(wxMouseEvent& event)
 		name << i + 1 << ".bmp";
 		fractal[i]->GenerateBitmap(name, drawPanel);
 	}
+}
+
+void MainFrame::animateFractalButtonOnLeftUp(wxMouseEvent & event)
+{
+	event.Skip();
+	return;
 }

@@ -12,12 +12,15 @@ public:
 
 	virtual void AddTransformation(wxTextInputStream & fstr, int i) = 0;
 	virtual void GenerateBitmap(wxString filename, wxPanel * drawPanel) = 0;
+	/* returns current number of transformations stored in fractal*/
 	virtual int GetTransformationSize();
-	///empty function has to be filled
+	/* adds transformations to fractal with 0 probability and 0 parameters 
+	in affine transformation
+	 */
 	virtual void SetTransformationSize(int n) = 0;
 protected:
-	int iterations;
+	int iterations; // number of transformations needed in fractal
 	wxSize bitmapSize; //bitmap size on which it has to be drawn
-	int transformationSize; //size of transformations needed in fractal
+	int transformationSize; //number of transformations needed in fractal
 };
 

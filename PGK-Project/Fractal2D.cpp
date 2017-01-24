@@ -59,7 +59,7 @@ void Fractal2D::GenerateBitmap(wxString filename, wxPanel * drawPanel)
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_real_distribution<> dis(0, 1);
-	double rand;
+	double rand; // random number
 	for (int i = 0; i < iterations; i++)
 	{
 		//generate number

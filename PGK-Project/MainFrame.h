@@ -37,15 +37,16 @@ private:
 protected:
 	wxPanel* drawPanel;
 	wxButton* readFileButton;
+	wxButton* animateFractalButton;
 	wxTimer mainTimer;
 
 	// Virtual event handlers, overide them in your derived class
 	virtual void readFileButtonOnLeftUp(wxMouseEvent& event);
-
+	virtual void animateFractalButtonOnLeftUp(wxMouseEvent& event);
 
 public:
 
-	MainFrame(wxWindow* parent, wxWindowID id = wxID_MAINFRAME, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(360, 300), long style = wxDEFAULT_FRAME_STYLE | wxICONIZE | wxMINIMIZE | wxRESIZE_BORDER | wxSYSTEM_MENU | wxTAB_TRAVERSAL);
+	MainFrame(wxWindow* parent, wxWindowID id = wxID_MAINFRAME, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(360, 300), long style = wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX) | wxICONIZE | wxMINIMIZE | wxSYSTEM_MENU | wxTAB_TRAVERSAL);
 
 	~MainFrame();
 
